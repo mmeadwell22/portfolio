@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+
+<body>
+    <div id="mainPage" class="container-fluid col-12">
+        <div id="header" class="col-12">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <a class="navbar-brand" href="http://127.0.0.1:5500/index.html">Matthew Meadwell</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+                    aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5500/index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5500/index.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5500/contact.html">Contact Me</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="font-weight-bold">I'd love to hear from you, feel free to get in touch!</h1>
+            </div>
+        </div>
+        <br />
+        <hr />
+        <div class="row" style="margin-left: 0; margin-right: 0">
+            <div class="col-md-6">
+                <h2 class="font-weight-bold">How to get a hold of me</h2>
+                <h4>Below is a list of different ways to contact me. Alternatively use the form on the right for your convenience.</h4>
+                <h4><strong>Email:</strong> mmeadwell22@gmail.com<br />
+                    <strong>Call/Text:</strong> 216-209-1734
+                </h4>
+            </div>
+            <div class="col-md-6 mx-auto">
+                <div class="form-group">
+                    <label for="nameInput">Name: </label>
+                    <input id="nameInput" type="text" placeholder="Enter Name" class="form-control" value="" />
+                </div>
+                <div class="form-group">
+                    <label for="emailInput">Email: </label>
+                    <input id="emailInput" type="text" placeholder="Enter Email" class="form-control" value="" />
+                </div>
+                <div class="form-group">
+                    <label for="messageInput">Message: </label>
+                    <textarea id="messageInput" class="form-control" rows="5" placeholder="Enter Message"></textarea>
+                </div>
+                <button id="sendEmail" class="btn btn-success" type="button">Send</button>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/testing.js"></script>
+    <script src=" https://smtpjs.com/v3/smtp.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        document.getElementById("sendEmail").addEventListener("click", SendEmail)
+        function SendEmail() {
+            var name = document.getElementById("nameInput").value;
+            var email = document.getElementById("emailInput").value;
+            var msg = document.getElementById("messageInput").value;
+            if (name != "" && email != "" && msg != "") {
+                Email.send({
+                    SecureToken: "72af1c50-0ead-4548-b3f1-9c285bbba681",
+                    To: 'mmeadwell22@gmail.com',
+                    From: "contactformportfolio22@gmail.com",
+                    Subject: "CONTACT FORM " + name + " from " + email,
+                    Body: msg
+                }).then(
+                    cnfmessage => alert("Message Sent")
+                );
+                document.getElementById("nameInput").value = "";
+                document.getElementById("emailInput").value = "";
+                document.getElementById("messageInput").value = "";
+            }
+            else {
+                alert("Please enter a name, email and message below.");
+            }
+        }
+    </script>
+
+</body>
+</head>
